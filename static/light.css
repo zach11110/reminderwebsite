@@ -1,0 +1,25 @@
+/* Light Theme Styles */
+
+body {
+    background-color: #ffffff;
+    color: #333333;
+    font-family: Arial, sans-serif;
+}
+
+header, footer {
+    background-color: #f7f7f7;
+    padding: 10px;
+    text-align: center;
+}
+
+.flashes .flash {
+    border: 1px solid #cccccc;
+    padding: 5px;
+    margin: 5px;
+    background-color: #e8e8e8;
+}
+
+.login-signup-container, .form-container {
+    background-color: #ffffff; /* White background */
+    color: #333333;            /* Dark text */
+}

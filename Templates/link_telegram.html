@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+<div class="login-signup-container rtl">
+        <div class="form-container">
+    <h2>قم بربط حسابك في التيلغرام</h2>
+    <p>{{ message }}</p>
+    <a href="{{ url_for('settings') }}" class="btn btn-primary">العودة الى الاعدادت</a>
+</div>
+{% endblock %}

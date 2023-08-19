@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ _('Create Reminder') }}</title>
+</head>
+<body>
+    <!-- Indicate for which group the reminder is being created -->
+    {% if group %}
+        <h2>{{ _('Reminder for: ') }} {{ group.name }}</h2>
+    {% endif %}
+
+    <h1>{{ _('Create a Reminder') }}</h1>
+    <form method="post">
+        <label for="reminder_message">{{ _('Reminder Message') }}:</label>
+        <input type="text" id="reminder_message" name="reminder_message" required><br><br>
+        
+        <label for="expiration_date">{{ _('Expiration Date') }}:</label>
+        <input type="date" id="expiration_date" name="expiration_date" required><br><br>
+        
+        <button type="submit">{{ _('Create Reminder') }}</button>
+    </form>
+    <div class="language-selection">
+        <a href="{{ url_for('set_locale', locale='en') }}">{{ _('English') }}</a>
+        <a href="{{ url_for('set_locale', locale='ar') }}">{{ _('العربية') }}</a>
+    </div>
+</body>
+</html>

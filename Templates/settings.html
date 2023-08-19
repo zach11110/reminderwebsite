@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-signup-container" dir="rtl">
+    <div class="form-container">
+        <h2>{{ _('الاعدادات') }}</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label>{{ _('الايميل') }}:</label>
+                {{ form.email(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label>{{ _('رقم الهاتف') }}:</label>
+                {{ form.phone_number(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label>{{ _('حساب التيلغرام, الرجاء عدم التغير') }}:</label>
+                {{ form.telegram_id(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <label>{{ _('اختر الثيم') }}:</label>
+                {{ form.theme(class="form-control") }}
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">{{ _('حفظ التغيرات') }}</button>
+            </div>
+        </form>
+        <form action="{{ url_for('link_telegram') }}" method="post">
+            <button type="submit" class="btn btn-info mt-3">{{ _('اربط حساب التيلغرام') }}</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

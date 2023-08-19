@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <title>{{ _('تسجيل الدخول') }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="login-signup-container">
+        <div class="form-container">
+            <h1>{{ _('تسجيل الدخول') }}</h1>
+
+            <!-- Display flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashed-messages">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+                {{ form.hidden_tag() }} <!-- This includes the CSRF token -->
+                <div class="form-field">
+                    <label>{{ _('اسم المستخدم') }}</label>
+                    {{ form.username() }}
+                    {% if form.username.errors %}
+                        <div class="errors">{{ form.username.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label>{{ _('كلمة المرور') }}</label>
+                    {{ form.password() }}
+                    {% if form.password.errors %}
+                        <div class="errors">{{ form.password.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ form.submit(class="form-submit", value=_('تسجيل الدخول')) }}
+                </div>
+                <div class="language-selection">
+                    <a href="{{ url_for('set_language', language='en') }}">{{ _('English') }}</a>
+                    <a href="{{ url_for('set_language', language='ar') }}">{{ _('العربية') }}</a>
+                </div>
+            </form>
+            <p class="form-switch-link">{{ _('لا تملك حسابا؟') }} <a href="{{ url_for('signup') }}">{{ _('سجل هنا') }}</a></p>
+        </div>
+    </div>
+</body>
+</html>

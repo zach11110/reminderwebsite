@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <title>{{ _('تسجيل جديد') }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+     <div class="login-signup-container">
+         <div class="form-container">
+            <h1>{{ _('تسجيل جديد') }}</h1>
+
+            <!-- Display flash messages -->
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashed-messages">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <!-- Language Selection -->
+            <div class="language-selection">
+                <a href="{{ url_for('set_language', language='en') }}">{{ _('English') }}</a>
+                <a href="{{ url_for('set_language', language='ar') }}">{{ _('العربية') }}</a>
+            </div>
+
+            <form method="POST">
+                {{ form.hidden_tag() }} <!-- This includes the CSRF token -->
+                <div class="form-field">
+                    <label>{{ _('البريد الإلكتروني') }}</label>
+                    {{ form.email() }}
+                    {% if form.email.errors %}
+                        <div class="errors">{{ form.email.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label>{{ _('اسم المستخدم') }}</label>
+                    {{ form.username() }}
+                    {% if form.username.errors %}
+                        <div class="errors">{{ form.username.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label>{{ _('كلمة المرور') }}</label>
+                    {{ form.password() }}
+                    {% if form.password.errors %}
+                        <div class="errors">{{ form.password.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    <label>{{ _('تأكيد كلمة المرور') }}</label>
+                    {{ form.confirm_password() }}
+                    {% if form.confirm_password.errors %}
+                        <div class="errors">{{ form.confirm_password.errors[0] }}</div>
+                    {% endif %}
+                </div>
+                <div class="form-field">
+                    {{ form.submit(class="form-submit", value=_('تسجيل جديد')) }}
+                </div>
+            </form>
+            <p class="form-switch-link">{{ _('هل لديك حساب بالفعل؟') }} <a href="{{ url_for('login') }}">{{ _('تسجيل الدخول') }}</a></p>
+        </div>
+    </div>
+</body>
+</html>
